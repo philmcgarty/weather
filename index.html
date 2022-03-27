@@ -4,10 +4,92 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
     <link rel="stylesheet" href="./assets/css/style.css" /> 
-    <title>Document</title>
+    <title>Weather Dashboard</title>
 </head>
 <body>
+    <header>
+        <h1>Weather Dashboard</h1>
+    </header>
+    
+
+    <main class="container-fluid">
+        <div class="row">
+
+            <div class="col-3 left-panel">
+                <h2>Search for a City:</h2>
+                
+                    <form class="row">
+                        <!-- <label for="fname">First name: </label> -->
+                        <input type="text" class=" col-12 location-input" id="city-input" name="city-input" placeholder="Type City Here">
+                    </form>
+                
+            </div>
+            
+            <div class="col-9 right-panel">
+                <div class="row current-day mr-2">
+                    <div class="col-12">
+                        <h2>City & Date <img class="icon-large"id="icon" src="" /> </h2>
+                        <p>Temp: <span id="temperature"></span></p>
+                        <p>Wind: <span id="wind-speed"></span></p>
+                        <p>Humidity: <span id="humidity-percent"></span></p>
+                        <p>UV Index: <span id="uv-index"></span></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <h3>5-Day Forecast:</h3>
+                    </div>
+                </div>
+                <div class="row daily-cards d-flex justify-content-between mr-2">
+                    <div class="col-2 card bg-info" id="day1">
+                        <h4>Day 1</h4>
+                        <img class="icon-small" id="icon1"></img>
+                        <p>Temp: <span id="temp1"></span></p>
+                        <p>Wind: <span id="wind1"></span></p>
+                        <p>Humidity: <span id="humidity1"></span></p>
+                    </div>
+                    <div class="col-2 card bg-info" id="day2">
+                        <h4>Day 2</h4>
+                        <img class="icon-small" id="icon2"></img>
+                        <p>Temp: <span id="temp2"></span></p>
+                        <p>Wind: <span id="wind2"></span></p>
+                        <p>Humidity: <span id="humidity2"></span></p>    
+                    </div>
+                    <div class="col-2 card bg-info" id="day3">
+                        <h4>Day 3</h4>
+                        <img class="icon-small" id="icon3"></img>
+                        <p>Temp: <span id="temp3"></span></p>
+                        <p>Wind: <span id="wind3"></span></p>
+                        <p>Humidity: <span id="humidity3"></span></p>
+                    </div>
+                    <div class="col-2 card bg-info" id="day4">
+                        <h4>Day 4</h4>
+                        <img class="icon-small" id="icon4"></img>
+                        <p>Temp: <span id="temp4"></span></p>
+                        <p>Wind: <span id="wind4"></span></p>
+                        <p>Humidity: <span id="humidity4"></span></p>
+                    </div>
+                    <div class="col-2 card bg-info" id="day5">
+                        <h4>Day 5</h4>
+                        <img class="icon-small" id="icon5"></img>
+                        <p>Temp: <span id="temp5"></span></p>
+                        <p>Wind: <span id="wind5"></span></p>
+                        <p>Humidity: <span id="humidity5"></span></p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+            
+    </main>
+    
+    <!-- 7 days "https://api.openweathermap.org/data/2.5/onecall?lat=33.44&lon=-94.04&exclude=current,minutely,hourly,alerts&appid=8afb55e108bfe22e6df569f88292df63" -->
+
+    <!-- 5 day/3hr "https://api.openweathermap.org/data/2.5/forecast?lat=45.4211&lon=-75.6901&appid=8afb55e108bfe22e6df569f88292df63" -->
+    
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="./assets/js/script.js"></script>
 </body>
 </html>
