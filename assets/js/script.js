@@ -14,24 +14,30 @@ $("#today").text(todayDate);
 //     $("#uv-index").text(uvi);
 // };
 
+
 var displayFiveDay= function(weatherData){
     // for loop - cycles through weatherData.daily[i]
     
     for(var i=0; i<weatherData.daily.length;i++){
         // excludes [0] data
         if (i>0 && i<6){
+            var futureDate = moment().add(i, 'days').format('L');
+            console.log(futureDate)
             var icon = weatherData.daily[i].weather[0].icon
             var icon1Address = "http://openweathermap.org/img/wn/"+icon+"@2x.png";
             var temp = weatherData.daily[i].temp.day;
             var wind = weatherData.daily[i].wind_speed;
             var humidity = weatherData.daily[i].humidity;
+            $("#day"+i).text(futureDate);
             $("#icon"+i).attr("src",icon1Address);
+            $(".icon-small").css("visibility","visible");
             $("#temp"+i).text(temp + " °C");
             $("#wind"+i).text(wind + " KPH");
             $("#humidity"+i).text(humidity + " %");
-        } else {
-            console.log("got this far! "+i);
-        }
+        } 
+        // else {
+        //     console.log("got this far! "+i);
+        // }
     }
 };
 
@@ -60,6 +66,7 @@ var getWeather = function(lat, lon){
                 //insertCurrentWeatherData(temp,wind,humidity,uvi);
                 $("#city").text(cityName+", "+country);
                 $("#icon").attr("src", iconAddress);
+                $(".icon-large").css("visibility","visible");
                 $("#temperature").text(temp + " °C");
                 $("#wind-speed").text(wind + " KPH");
                 $("#humidity-percent").text(humidity + " %");
@@ -86,13 +93,16 @@ var getWeatherLocation = function(city, country){
             .then(function(data){
             console.log(data);
             locationData = data;
-            cityName = locationData[0].name;
-            lat = locationData[0].lat;
-            lon = locationData[0].lon;
-            getWeather(lat, lon);   
+            if (locationData.length>0){
+                cityName = locationData[0].name;
+                lat = locationData[0].lat;
+                lon = locationData[0].lon;
+                getWeather(lat, lon);
+            } else {
+                alert("Location not found please try again");
+                
+            }  
             })
-        } else {
-            alert("Location not found please try again");
         }       
     })
 };
