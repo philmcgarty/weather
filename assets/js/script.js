@@ -1,6 +1,10 @@
-weatherData = {};
-locationData = {};
-cityName = "";
+var weatherData = {};
+var locationData = {};
+var cityName = "";
+var searchButton = $("#search-btn");
+var country = "";
+var todayDate = moment().format('L');
+$("#today").text(todayDate);
 
 // // FUNCTION INSERTS CURRENT DAY WEATHER
 // var insertCurrentWeatherData = function(temp,wind,humidity,uvi){
@@ -54,6 +58,7 @@ var getWeather = function(lat, lon){
                 
                 console.log(`${temp} °C, ${wind} KPH, ${humidity} %, ${uvi}`);
                 //insertCurrentWeatherData(temp,wind,humidity,uvi);
+                $("#city").text(cityName+", "+country);
                 $("#icon").attr("src", iconAddress);
                 $("#temperature").text(temp + " °C");
                 $("#wind-speed").text(wind + " KPH");
@@ -87,13 +92,25 @@ var getWeatherLocation = function(city, country){
             getWeather(lat, lon);   
             })
         } else {
-            alert("Not found please try again");
+            alert("Location not found please try again");
         }       
     })
 };
 
 
-getWeatherLocation("london", "GB");
+//getWeatherLocation("london", "GB");
+
+
+$(searchButton).on("click", function(event){
+    event.preventDefault();
+    var city = document.querySelector("#city-input").value;
+    country = document.querySelector("#country").value;
+    if (city){
+        console.log(city, country);
+        getWeatherLocation(city, country);
+    }
+    
+  });
 
 // search for city - add to local storage
 

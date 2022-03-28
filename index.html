@@ -20,9 +20,21 @@
             <div class="col-3 left-panel">
                 <h2>Search for a City:</h2>
                 
-                    <form class="row">
+                    <form class="row d-flex">
                         <!-- <label for="fname">First name: </label> -->
-                        <input type="text" class=" col-12 location-input" id="city-input" name="city-input" placeholder="Type City Here">
+                        <input type="text" class=" col-12 location-input" id="city-input" name="city-input" placeholder="Type City Here" required>
+                        
+                        <div class="col-12">
+                            <label for="country">Select a Country:</label>
+                            <select name="country" id="country">
+                                <option value="CA" selected>Canada</option>
+                                <option value="US">USA</option>
+                                <option value="GB">UK</option>                        
+                            </select>
+                        </div>
+                        <div class="col-12">
+                            <button type="submit" class="search-btn" id="search-btn">Search</button>
+                        </div>
                     </form>
                 
             </div>
@@ -30,7 +42,7 @@
             <div class="col-9 right-panel">
                 <div class="row current-day mr-2">
                     <div class="col-12">
-                        <h2>City & Date <img class="icon-large"id="icon" src="" /> </h2>
+                        <h2><span class="" id="today"></span> <span id="city"></span> <img class="icon-large"id="icon" src="" /> </h2>
                         <p>Temp: <span id="temperature"></span></p>
                         <p>Wind: <span id="wind-speed"></span></p>
                         <p>Humidity: <span id="humidity-percent"></span></p>
@@ -88,7 +100,7 @@
     <!-- 7 days "https://api.openweathermap.org/data/2.5/onecall?lat=33.44&lon=-94.04&exclude=current,minutely,hourly,alerts&appid=8afb55e108bfe22e6df569f88292df63" -->
 
     <!-- 5 day/3hr "https://api.openweathermap.org/data/2.5/forecast?lat=45.4211&lon=-75.6901&appid=8afb55e108bfe22e6df569f88292df63" -->
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="./assets/js/script.js"></script>
 </body>

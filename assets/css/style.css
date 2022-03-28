@@ -49,8 +49,16 @@ h3 {
     width: 70px;
 }
 
-.city-input {
+.location-input {
     border: black 1px solid;
     padding: 2px 4px;
+    width: 90%;
+    /* width: 30pt; */
     /* width:max-content; */
+}
+
+.search-btn {
+    color: white;
+    background-color: rgb(106, 201, 230);
+    width: 100%;
 }
