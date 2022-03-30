@@ -85,7 +85,7 @@ var displayFiveDay= function(weatherData){
             var futureDate = moment().add(i, 'days').format('L');
             console.log(futureDate)
             var icon = weatherData.daily[i].weather[0].icon
-            var icon1Address = "http://openweathermap.org/img/wn/"+icon+"@2x.png";
+            var icon1Address = "https://openweathermap.org/img/wn/"+icon+"@2x.png";
             var temp = weatherData.daily[i].temp.day;
             var wind = weatherData.daily[i].wind_speed;
             var humidity = weatherData.daily[i].humidity;
@@ -116,7 +116,7 @@ var getWeather = function(lat, lon){
                 console.log(data);
                 weatherData=data;
                 var icon = weatherData.current.weather[0].icon;
-                var iconAddress = "http://openweathermap.org/img/wn/"+icon+"@2x.png";
+                var iconAddress = "https://openweathermap.org/img/wn/"+icon+"@2x.png";
                 //console.log(iconAddress);
                 var temp = weatherData.current.temp;
                 var wind = weatherData.current.wind_speed;
@@ -124,10 +124,10 @@ var getWeather = function(lat, lon){
                 var uvi = weatherData.current.uvi;
                 
                 
-                if (uvi>7){
+                if (uvi>=7){
                     console.log("high");
                     $("#uv-index").attr("class","red")
-                } else if (uvi>4){
+                } else if (uvi>=4){
                     console.log("medium");
                     $("#uv-index").attr("class","orange")
                 } else {
@@ -158,7 +158,7 @@ var getWeather = function(lat, lon){
 var getWeatherLocation = function(city, country){
     var lat = 0;
     var lon = 0;
-    var locationUrl = "http://api.openweathermap.org/geo/1.0/direct?q="+city+","+country+"&appid=8afb55e108bfe22e6df569f88292df63"
+    var locationUrl = "https://api.openweathermap.org/geo/1.0/direct?q="+city+","+country+"&appid=8afb55e108bfe22e6df569f88292df63"
     console.log(locationUrl);
     fetch(locationUrl)
     .then(function(response){
