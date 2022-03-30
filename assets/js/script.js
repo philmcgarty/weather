@@ -123,6 +123,19 @@ var getWeather = function(lat, lon){
                 var humidity = weatherData.current.humidity;
                 var uvi = weatherData.current.uvi;
                 
+                
+                if (uvi>7){
+                    console.log("high");
+                    $("#uv-index").attr("class","red")
+                } else if (uvi>4){
+                    console.log("medium");
+                    $("#uv-index").attr("class","orange")
+                } else {
+                    console.log("low");
+                    $("#uv-index").attr("class","green")
+                }
+                
+                
                 //console.log(`${temp} °C, ${wind} KPH, ${humidity} %, ${uvi}`);
                 //insertCurrentWeatherData(temp,wind,humidity,uvi);
                 $("#city").text(cityName+", "+country);
@@ -160,6 +173,7 @@ var getWeatherLocation = function(city, country){
                 lon = locationData[0].lon;
                 getWeather(lat, lon);
                 saveSearch(cityName, country);
+                document.querySelector("#city-input").value = "";
             } else {
                 alert("Location not found please try again");
                 
@@ -186,14 +200,14 @@ $(searchButton).on("click", function(event){
 
 
 
-$("#search-list").on("click", ".city-btn", function(){
+$("#search-list").on("click", ".city-btn", function(event){
     var clickItem = $(this);
     console.log(clickItem);
-    var city = $(clickItem).data("city");
-    //console.log(city);
-    var country = $(clickItem).data("country");
-    //console.log(country);
-    getWeatherLocation(city, country);
+    cityName = $(clickItem).data("city");
+    console.log(city);
+    country = $(clickItem).data("country");
+    console.log(country);
+    getWeatherLocation(cityName, country);
 })
 
 
