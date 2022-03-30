@@ -4,15 +4,62 @@ var cityName = "";
 var searchButton = $("#search-btn");
 var country = "";
 var todayDate = moment().format('L');
+var searchResultsArray = [];
 $("#today").text(todayDate);
 
-// // FUNCTION INSERTS CURRENT DAY WEATHER
-// var insertCurrentWeatherData = function(temp,wind,humidity,uvi){
-//     $("#temperature").text(temp + " °C");
-//     $("#wind-speed").text(wind + " KPH");
-//     $("#humidity-percent").text(humidity + " %");
-//     $("#uv-index").text(uvi);
-// };
+
+
+// FUNCTION TO CREATE AND ADD BUTTONS
+var buttonCreator = function(i){
+    var buttonText = "";
+        buttonText = `${searchResultsArray[i].city}, ${searchResultsArray[i].country}`;
+        console.log(buttonText);
+        
+        var searchResultsEl = document.getElementById("search-list");
+        var newButton = document.createElement("p");
+        
+        $(newButton).text(buttonText);
+        //console.log(newButton);
+        newButton.classList.add("city-btn");
+        newButton.setAttribute("data-city", searchResultsArray[i].city);
+        newButton.setAttribute("data-country", searchResultsArray[i].country);
+        searchResultsEl.appendChild(newButton);
+}
+
+
+// FUNCTION TO LOAD PREVIOUS SEARCH RESULTS
+var loadSearches = function(){
+    searchResultsArray = JSON.parse(localStorage.getItem("searchResults"));   
+    
+    // if array not saved to local storage already
+    if(!searchResultsArray){
+        searchResultsArray = [];
+    }
+    
+    // creates buttons
+    for (var i=0; i<searchResultsArray.length; i++){
+        buttonCreator(i);
+    };
+}
+
+
+// FUNCTION TO SAVE SEARCH TO ARRAY AND LOCAL STORAGE
+var saveSearch = function(cityName, countryName){
+    var newObj = {
+        city: cityName,
+        country: countryName        
+    }
+    //console.log(newObj);
+    searchResultsArray.push(newObj);
+    //console.log(searchResultsArray);
+
+    localStorage.setItem("searchResults", JSON.stringify(searchResultsArray));
+    var i = searchResultsArray.length;
+    i=i-1;
+    console.log(i);
+    buttonCreator(i);
+};
+
 
 
 var displayFiveDay= function(weatherData){
@@ -56,13 +103,13 @@ var getWeather = function(lat, lon){
                 weatherData=data;
                 var icon = weatherData.current.weather[0].icon;
                 var iconAddress = "http://openweathermap.org/img/wn/"+icon+"@2x.png";
-                console.log(iconAddress);
+                //console.log(iconAddress);
                 var temp = weatherData.current.temp;
                 var wind = weatherData.current.wind_speed;
                 var humidity = weatherData.current.humidity;
                 var uvi = weatherData.current.uvi;
                 
-                console.log(`${temp} °C, ${wind} KPH, ${humidity} %, ${uvi}`);
+                //console.log(`${temp} °C, ${wind} KPH, ${humidity} %, ${uvi}`);
                 //insertCurrentWeatherData(temp,wind,humidity,uvi);
                 $("#city").text(cityName+", "+country);
                 $("#icon").attr("src", iconAddress);
@@ -91,13 +138,14 @@ var getWeatherLocation = function(city, country){
         if (response.ok){
             response.json()
             .then(function(data){
-            console.log(data);
+            //console.log(data);
             locationData = data;
             if (locationData.length>0){
                 cityName = locationData[0].name;
                 lat = locationData[0].lat;
                 lon = locationData[0].lon;
                 getWeather(lat, lon);
+                saveSearch(cityName, country);
             } else {
                 alert("Location not found please try again");
                 
@@ -121,6 +169,9 @@ $(searchButton).on("click", function(event){
     }
     
   });
+
+
+loadSearches();
 
 // search for city - add to local storage
 
