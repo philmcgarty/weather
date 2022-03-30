@@ -23,6 +23,7 @@ var buttonCreator = function(i){
         newButton.classList.add("city-btn");
         newButton.setAttribute("data-city", searchResultsArray[i].city);
         newButton.setAttribute("data-country", searchResultsArray[i].country);
+        newButton.setAttribute("id", searchResultsArray[i].city+searchResultsArray[i].country);
         searchResultsEl.appendChild(newButton);
 }
 
@@ -182,6 +183,19 @@ $(searchButton).on("click", function(event){
     }
     
   });
+
+
+
+$("#search-list").on("click", ".city-btn", function(){
+    var clickItem = $(this);
+    console.log(clickItem);
+    var city = $(clickItem).data("city");
+    //console.log(city);
+    var country = $(clickItem).data("country");
+    //console.log(country);
+    getWeatherLocation(city, country);
+})
+
 
 
 loadSearches();
