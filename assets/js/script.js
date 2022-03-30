@@ -45,19 +45,32 @@ var loadSearches = function(){
 
 // FUNCTION TO SAVE SEARCH TO ARRAY AND LOCAL STORAGE
 var saveSearch = function(cityName, countryName){
-    var newObj = {
-        city: cityName,
-        country: countryName        
+    var exists = false;
+    
+    for (var i=0; i<searchResultsArray.length; i++){
+        if (cityName === searchResultsArray[i].city && countryName === searchResultsArray[i].country){
+            exists = true;
+            
+        }
     }
-    //console.log(newObj);
-    searchResultsArray.push(newObj);
-    //console.log(searchResultsArray);
 
-    localStorage.setItem("searchResults", JSON.stringify(searchResultsArray));
-    var i = searchResultsArray.length;
-    i=i-1;
-    console.log(i);
-    buttonCreator(i);
+    console.log(exists);
+
+    if (!exists){
+        var newObj = {
+            city: cityName,
+            country: countryName        
+        }
+        //console.log(newObj);
+        searchResultsArray.push(newObj);
+        //console.log(searchResultsArray);
+
+        localStorage.setItem("searchResults", JSON.stringify(searchResultsArray));
+        var x = searchResultsArray.length;
+        x=x-1;
+        console.log(x);
+        buttonCreator(x);
+    }
 };
 
 
