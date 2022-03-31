@@ -4,29 +4,32 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap styling -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="./assets/css/style.css" /> 
     <title>Weather Dashboard</title>
 </head>
+
 <body>
     <header>
+        <!-- Page title -->
         <h1>Weather Dashboard</h1>
     </header>
     
-
+    <!-- Allow row to run to edge of screen(no padding) -->
     <main class="container-fluid">
         <div class="row">
-
+            <!-- Left Panel -->
             <div class="col-lg-3 col-md-4 col-sm-6 left-panel">
                 <h2 class="h2heading">Search for a City:</h2>
-                
+                    <!-- User input form section for search -->
                     <form class="row mr-2">
-                        <!-- <label for="fname">First name: </label> -->
+                        <!-- City input text box -->
                         <div class="col-12">
                             <input type="text" class="location-input" id="city-input" name="city-input" placeholder="Type City Here" required>
                         </div>
-                        
-                        
+                        <!-- Country input dropdown menu - Canada/USA/UK -->
                         <div class="col-12 mt-2">
                             <label for="country">Select a Country:</label>
                             <select name="country" id="country" class=" country-input">
@@ -35,7 +38,7 @@
                                 <option value="GB">UK</option>                        
                             </select>
                         </div>
-                        
+                        <!-- Submit button -->
                         <div class="col-12 mt-3">
                             <button type="submit" class="search-btn" id="search-btn">Search</button>
                         </div>
@@ -46,13 +49,13 @@
                         <div class="col-12" id="search-list">
                             <!-- <p class="city-btn"> A new button!</p> -->
                         </div>
-                        
-
                     </div>
-
             </div>
-            
+            <!-- End of left Panel -->
+
+            <!-- Right Panel with main info content -->
             <div class="col-lg-9 col-md-8 col-sm-6 right-panel">
+                <!-- Display of info for current day -->
                 <div class="row current-day mr-2">
                     <div class="col-12">
                         <h2><span class="h2heading" id="today"></span> <span class="h2heading" id="city"></span> <img class="icon-large"id="icon" src="" /> </h2>
@@ -62,20 +65,23 @@
                         <p>UV Index: <span id="uv-index"></span></p>
                     </div>
                 </div>
+                <!-- 5 Day forcast section -->
                 <div class="row">
                     <div class="col-12">
                         <h3>5-Day Forecast:</h3>
                     </div>
                 </div>
+                <!-- Cards displaying 5 days of weather -->
                 <div class="row daily-cards d-flex justify-content-between mr-2">
-                    <div class="col-lg-2 col-md-4 col-sm-6 card bg-info">
-                        
+                    <!-- 1st Day -->
+                    <div class="col-lg-2 col-md-4 col-sm-6 card bg-info">                        
                         <p id="day1" class="day-date"></p>
                         <img class="icon-small" id="icon1"></img>
                         <p>Temp: <span id="temp1"></span></p>
                         <p>Wind: <span id="wind1"></span></p>
                         <p>Humidity: <span id="humidity1"></span></p>
                     </div>
+                    <!-- 2nd Day -->
                     <div class="col-lg-2 col-md-4 col-sm-6 card bg-info">
                         <p id="day2" class="day-date"></p>
                         <img class="icon-small" id="icon2"></img>
@@ -83,6 +89,7 @@
                         <p>Wind: <span id="wind2"></span></p>
                         <p>Humidity: <span id="humidity2"></span></p>    
                     </div>
+                    <!-- 3rd Day -->
                     <div class="col-lg-2 col-md-4 col-sm-6 card bg-info">
                         <p id="day3" class="day-date"></p>
                         <img class="icon-small" id="icon3"></img>
@@ -90,6 +97,7 @@
                         <p>Wind: <span id="wind3"></span></p>
                         <p>Humidity: <span id="humidity3"></span></p>
                     </div>
+                    <!-- 4th Day -->
                     <div class="col-lg-2 col-md-4 col-sm-6 card bg-info">
                         <p id="day4" class="day-date"></p>
                         <img class="icon-small" id="icon4"></img>
@@ -97,6 +105,7 @@
                         <p>Wind: <span id="wind4"></span></p>
                         <p>Humidity: <span id="humidity4"></span></p>
                     </div>
+                    <!-- 5th Day -->
                     <div class="col-lg-2 col-md-4 col-sm-6 card bg-info">
                         <p id="day5" class="day-date"></p>
                         <img class="icon-small" id="icon5"></img>
@@ -109,9 +118,11 @@
         </div>
     </main>
     
-    
+    <!-- moment.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <!-- Custom JavaScript -->
     <script src="./assets/js/script.js"></script>
 </body>
 </html>
